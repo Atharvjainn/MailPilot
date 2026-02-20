@@ -7,7 +7,6 @@ export const signinSocialService = async(provider : 'google') : Promise<string> 
             provider,callbackURL : '/dashboard'
         }
     })
-        console.log(url);
         if(!url) throw new Error('URL not found!!')
         return url
     } catch {

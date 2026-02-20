@@ -7,7 +7,7 @@ export default function Home() {
   const router = useRouter()
   const onclickhandler = async() => {
     await signInSocialAction('google')
-    router.push('/dashboard ')
+   
   }
 
   return (

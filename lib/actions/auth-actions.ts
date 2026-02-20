@@ -8,10 +8,12 @@ export const signInSocialAction = async(provider : 'google') => {
     try {
         url = await signinSocialService(provider)
     } catch (error) {
+        console.log(error)
         if(error instanceof Error){
             return {message : error.message}
         }
         return {message : "Unexpected error"}
+
     }
     redirect(url)
     
