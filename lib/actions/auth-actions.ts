@@ -1,6 +1,6 @@
 'use server'
 import { redirect } from "next/navigation"
-import { signinSocialService, signOutService } from "@/services/auth-services"
+import { getsessionService, signinSocialService, signOutService } from "@/services/auth-services"
 import { headers } from "next/headers"
 
 export const signInSocialAction = async(provider : 'google') => {
@@ -29,5 +29,19 @@ export const signOutAction = async () => {
             return { message : error.message}
         }
         return {message : "Unexpected error"}
+    }
+}
+
+export const getUserAction = async () => {
+    try {
+        const reqheaders = await headers()
+        const user = await getsessionService(reqheaders)
+        return user
+    } catch (error) {
+        throw error
+        // if(error instanceof Error){
+        //     return { message : error.message}
+        // }
+        // return {message : "Unexpected error"}
     }
 }

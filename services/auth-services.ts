@@ -21,7 +21,19 @@ export const signOutService = async (headers : Headers) : Promise<boolean> => {
         })
         if(!result.success) throw new Error('Could Not Sign out')
         return result.success
-    } catch (error) {
+    } catch  {
         throw new Error('Sign out failed!!')
+    }
+}
+
+export const getsessionService = async (headers : Headers) => {
+    try {
+        const session = await auth.api.getSession({
+            headers
+        })
+        if(!session) throw new Error('Unauthenticated!!')
+        return session.user
+    } catch {
+        throw new Error('Could not find session')
     }
 }

@@ -2,8 +2,16 @@
 
 import { signOutAction } from "@/lib/actions/auth-actions"
 import { useRouter } from "next/navigation"
+import { useAuthStore } from "@/store/useAuthStore"
+import { useEffect } from "react"
 
 const page = () => {  
+  const {authuser} = useAuthStore()
+
+  useEffect(() => {
+    console.log(authuser)
+  },[authuser])
+  
   const router = useRouter()
   const onclickhandler = async() => {
     await signOutAction()
