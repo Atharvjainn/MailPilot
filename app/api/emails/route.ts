@@ -1,5 +1,5 @@
 import { auth } from "@/lib/auth";
-import { getGoogleAccount } from "@/lib/prisma/auth";
+import { getGoogleAccount } from "@/lib/prisma/db";
 
 //This is the main call of the fetch emails
 export async function GET(req: Request) {

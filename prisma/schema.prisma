@@ -23,6 +23,8 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
+  emails        Email[]
+  syncState     UserSyncState?
 
   @@unique([email])
   @@map("user")
@@ -75,3 +77,33 @@ model Verification {
   @@index([identifier])
   @@map("verification")
 }
+
+model Email {
+  id              String   @id @default(cuid())
+  gmailMessageId  String
+  subject         String?
+  snippet         String?
+  internalDate    DateTime?
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([gmailMessageId, userId]) // prevents duplicates per user
+  @@index([userId])
+  @@map("email")
+}
+
+model UserSyncState {
+  id           String   @id @default(cuid())
+  userId       String   @unique
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  lastSyncedAt DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("user_sync_state")
+}
+

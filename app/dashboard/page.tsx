@@ -9,6 +9,13 @@ import { getEmails } from "@/lib/emailApiCalls"
 const page = () => {  
   const {authuser} = useAuthStore()
 
+
+  useEffect(() => {
+    getEmails()
+  },[])
+
+  
+
   useEffect(() => {
     console.log(authuser)
     // getEmails()

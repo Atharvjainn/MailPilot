@@ -1,5 +1,7 @@
 import {prisma} from '../prisma'
 
+//Some prisma functions are there in emailApiCalls
+
 export const getGoogleAccount = async (userId : string) => {
     try {
         const account = await prisma.account.findFirst({
@@ -12,6 +14,5 @@ export const getGoogleAccount = async (userId : string) => {
         return account
     } catch (error) {
         throw new Error("Something went wrong in fetching emails...");
-        
     }
 }
