@@ -1,17 +1,19 @@
+'use server'
 import { redirect } from "next/navigation"
 import { signinSocialService, signOutService } from "@/services/auth-services"
 import { headers } from "next/headers"
 
 export const signInSocialAction = async(provider : 'google') => {
+    let url : string
     try {
-        const url = await signinSocialService(provider)
-        redirect(url)
+        url = await signinSocialService(provider)
     } catch (error) {
         if(error instanceof Error){
             return {message : error.message}
         }
         return {message : "Unexpected error"}
     }
+    redirect(url)
     
 }  
 
