@@ -2,8 +2,8 @@
 import { prisma } from "@/lib/prisma"
 import { getGoogleAccount } from "./prisma/db";
 
-export const getEmails = async() => {
-    const res = await syncUserEmails('Jq0dhd4H9RqgIVCyaKBbSlWrKOqPOWtz')
+export const getEmails = async(userId : string) => {
+    const res = await syncUserEmails(userId)
     console.log(res);
     
 }

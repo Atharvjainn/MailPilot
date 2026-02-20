@@ -4,17 +4,10 @@ import { signOutAction } from "@/lib/actions/auth-actions"
 import { useRouter } from "next/navigation"
 import { useAuthStore } from "@/store/useAuthStore"
 import { useEffect } from "react"
-import { getEmails } from "@/lib/emailApiCalls"
+
 
 const page = () => {  
   const {authuser} = useAuthStore()
-
-
-  useEffect(() => {
-    getEmails()
-  },[])
-
-  
 
   useEffect(() => {
     console.log(authuser)
