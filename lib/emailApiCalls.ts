@@ -2,11 +2,6 @@
 import { prisma } from "@/lib/prisma"
 import { getGoogleAccount } from "./prisma/db";
 
-export const getEmails = async(userId : string) => {
-    const res = await syncUserEmails(userId)
-    console.log(res);
-    
-}
 
 
 
@@ -27,6 +22,7 @@ async function refreshAccessToken(account: any) {
   const data = await response.json()
 
   if (!response.ok) {
+    // throw error
     throw new Error("Failed to refresh token")
   }
 

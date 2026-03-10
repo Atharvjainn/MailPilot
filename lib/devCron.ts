@@ -1,6 +1,8 @@
 import cron from "node-cron"
-import { prisma } from "@/lib/prisma"
+import {prisma} from './prisma'
 import { getEmails } from "@/lib/emailApiCalls"
+
+
 
 export function startDevCron() {
   if (process.env.NODE_ENV !== "development") return
