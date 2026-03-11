@@ -16,3 +16,17 @@ export const getGoogleAccount = async (userId : string) => {
         throw new Error("Something went wrong in fetching emails...");
     }
 }
+
+
+export const getEmails = async (userId : string) => {
+    try {
+        const emails = await prisma.email.findMany({
+            where : {
+                userId : userId
+            }
+        })
+        return emails
+    } catch (error) {
+        throw error
+    }
+}
