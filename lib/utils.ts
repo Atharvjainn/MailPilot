@@ -6,12 +6,13 @@ type EmailBody = {
     body : string | null
 }
 
-// id subject body
+// id subject body internalDate
 export const formatMails = (mails : Email[]) : EmailBody[] => {
     const formattedmails = mails.map((mail) => ({
         id : mail.gmailMessageId,
         subject : mail.subject,
-        body : mail.snippet
+        body : mail.snippet,
+        receivedAt : mail.internalDate
     }))
     return formattedmails 
 }

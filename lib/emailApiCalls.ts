@@ -40,6 +40,7 @@ async function refreshAccessToken(account: any) {
 }
 
 export async function syncUserEmails(userId: string) {
+  console.log("SYNC STARTED", userId)
   // 1️⃣ Get Google account
   const account = await getGoogleAccount(userId)
 
@@ -82,7 +83,7 @@ export async function syncUserEmails(userId: string) {
     query += ` after:${unixSeconds}`
   } else {
     // First sync → last 1 day (for testing)
-    query += " newer_than:1d"
+    query += "newer_than:1d"
   }
 
   let pageToken: string | null = null
@@ -105,7 +106,7 @@ export async function syncUserEmails(userId: string) {
     }
 
     const listData = await listRes.json()
-
+    
     const emailsToInsert: any[] = []
 
     for (const msg of listData.messages || []) {
@@ -119,6 +120,7 @@ export async function syncUserEmails(userId: string) {
       )
 
       const msgData = await msgRes.json()
+      
 
       const headers = msgData.payload.headers
 
